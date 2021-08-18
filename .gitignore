@@ -2,5 +2,7 @@
 /.DS_Store
 /public/imagenes/.DS_Store
 
+.env
+src/database/config/config.js
 
 
