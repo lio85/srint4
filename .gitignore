@@ -3,4 +3,4 @@
 /public/imagenes/.DS_Store
 
 /src/dataBase/config
-.env
+/.env
