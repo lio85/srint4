@@ -1,0 +1,280 @@
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    
+} 
+
+.space{
+    height: 20px;
+
+}
+
+.detailTittle{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.contenedorDetalle{
+    display:flex;
+    justify-content: center;
+}
+
+.productDetaill{
+    display:flex;
+    justify-content: space-around;
+    padding-left: 15%;
+    padding-right: 15%;
+    
+
+}
+
+.prodDetailImg{
+    width: 40vh;
+    height: auto;
+
+}
+.productInfo{
+    display:block;
+    padding:2%;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+} 
+
+.descrip{
+    padding:2%;
+    
+}
+
+#det{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #386641;
+    width: 80vh;
+    align-self: center;
+}  
+
+#prodrelac{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+}
+
+.suggestedText{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 2.5%;
+}
+
+.prod{
+    width: 80%;
+    
+    padding-right: 30px;
+    
+}
+
+.productSuggestion{
+    display:flex;
+    justify-content: space-around;
+    margin-bottom: 3%;
+}
+
+.soldOut{
+    padding:1%;
+    border: 1px solid red;
+    background-color: #FFEDEB;
+    
+
+}
+
+.souldOutText{
+    font-size: smaller;
+    margin: 0.5%;
+    color: red;
+    text-align: center;
+
+}
+
+@media (min-width: 600px){
+    .prod{
+        width: 40%;
+    }
+}
+@media (min-width: 800px){
+    .prod{
+        width: 25%;
+    }
+}
+
+
+#relacionados{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    font-weight: bold;
+}
+
+.titulo{
+    font-family: Trebuchet MS, sans-serif;
+    font-size: x-large;
+    color:#386641;
+    margin-bottom: 2%;
+    text-align:center;
+}
+
+#precio{
+    
+    font-size: 18px;
+    text-align: center;
+    color: #AE76A6;
+
+}
+#fav{
+    display: flex;
+    justify-content: center;
+    padding-right: 10%;
+    
+}
+
+.detailIcon{
+    font-size: smaller;
+    margin:1%;
+
+}
+
+#cuotas{
+    
+    font-size: 14;
+}
+
+.titRelacionado{
+    
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.precioRelac{
+    
+    font-size: 14px;
+    font-weight: normal;
+}
+.cuotasSn{
+    
+    font-size: 12px;
+    font-weight: normal;
+}
+
+
+#prodrelac{
+    
+    font-size: 16px;
+    font-weight: bold;
+   
+}
+#espacioCuota{
+    height: 100px;
+    width: 100px;
+}
+
+.favorito{
+    color: #b20b96;
+}
+
+.principal{
+    display: flex;
+    height: 100px;
+}
+#logo{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+.iconos{
+    display: flex;
+    flex-flow: row-reverse wrap;
+    justify-content: space-around;
+}
+
+
+
+.right-menu {
+    display: inline-block;
+    background-color: #f3f3f3;
+    text-align: center;
+    padding: 5px;
+    width: 23.5%;
+    display: inline-flex;
+    justify-content: space-between;
+    margin-right: 7%;
+}
+
+
+.left-menu {
+    display: inline-block;
+    background-color: #f3f3f3;
+    text-align: center;
+    padding: 5px;
+    width: 23.5%;
+    display: inline-flex;
+    justify-content: space-evenly;
+}
+
+.cont-logo {
+    display: inline-block;
+    background-color: #f3f3f3;
+    text-align: center;
+    padding: 5px;
+    width: 50%;
+}
+
+.logo { 
+    width: 90px;
+    height: 75px;
+}
+
+
+
+
+footer img {
+    width: 72px;
+    height: 60px;
+    margin-right: 5px;
+    border: 1px solid rgb(43, 35, 35);
+    border-radius: 100%;
+
+}
+
+footer label {
+    display: block;
+}
+
+
+.contacto {
+    text-align: center;
+    font-weight: bold;   
+}
+
+.redes {
+    text-align: center;
+}
+
+.footer-titulos {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer-items {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+  

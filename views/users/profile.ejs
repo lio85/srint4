@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MaMeLi - Perfil</title>
+        <link rel="stylesheet" href="/css/shop.css">
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/css/productForm.css">
+    </head> 
+  
+    <body>
+        
+
+        <%- include('../partials/header') %>
+        <main id="login-main">
+            <div id="contenedor-general">
+                <div id="div-icono">
+                    Bienvenid@ <%=user.user_name%> <%=user.lastName_user%>!!   
+                </div>
+                <label id="bienvenida" class="labels-formulario"> 
+                    <%if(user.user_image != ""){%>
+                        <img class="profileImg" src="/imagenes/userImages/<%=user.user_image%>"> 
+                            <%} else{%>
+                        <img class="profileImg" src="/imagenes/logo.JPG">
+                    <%}%> 
+                </label>
+            <div class="div">
+            
+                <label id="label-usuario" class="labels-formulario"><%= user.email %></label>
+            </div>
+            <%if(user.admin == 0){%>
+            <div class="div">
+                <label id="label-usuario" class="labels-formulario">Tus favoritos <i class="far fa-heart"></i></label>
+                <!-- tags de js para vista de favoritos -->
+            </div>
+            <div class='div'>
+                <label id="label-usuario" class="labels-formulario">Tu carrito de compras</label>
+                <a href="/cart" <i class="fas fa-shopping-cart iconos"></i></a>
+            </div>
+            <%}%>
+            <%if(user.admin == 1){%>
+            <div class='div'>
+                    <label id="label-usuario" class="labels-formulario">
+                    <a href="/product/create"> Crear producto</a>
+                    </label>
+            </div>
+            <%}%>
+            <form action="/users/logout" method="GET">           
+                <button id="ingresar" type="submit">Cerrar sesión</button>
+            </form> 
+        </main>
+       
+
+    
+        <%- include('../partials/footer') %>
+
+        <script src="https://kit.fontawesome.com/17464b966e.js" crossorigin="anonymous"></script>
+          
+    </body>
+
+</html>
