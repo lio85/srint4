@@ -17,6 +17,7 @@ module.exports = {
     "host": "mysql-lionelprats.alwaysdata.net",
     "dialect": "mysql",
     "port": 3306
+    
   },
   "test": {
     "username": "root",

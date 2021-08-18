@@ -1,0 +1,5 @@
+No funcionaba el .env en .gitignore, lo solucione con este comando (solucion en alwaysdata- browser)
+vvvvvvvvvvvvvvvvvvvv
+git rm .env --cached
+
+------------------------------------------------------
