@@ -3,3 +3,7 @@ vvvvvvvvvvvvvvvvvvvv
 git rm .env --cached
 
 ------------------------------------------------------
+
+No funcionaba el src/dataBase/config/config.js en .gitignore, lo solucione con este comando (solucion en alwaysdata- browser)
+vvvvvvvvvvvvvvvvvvvv
+git rm src/dataBase/config/config.js --cached
