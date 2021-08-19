@@ -11,20 +11,19 @@ DB_PORT = 3306
 module.exports = {
 
   "development": {
-    "username": "241116",
+    "test": {
+      "username": "root",
+      "password": null,
+      "database": "database_development",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+  },
+  "username": "241116",
     "password": "alwaysdata2021",
     "database": "lionelprats_testing_proyecto_integrador_lio_testing",
     "host": "mysql-lionelprats.alwaysdata.net",
     "dialect": "mysql",
     "port": 3306
-    
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
   },
   "production": {
     "username": "241116",
@@ -62,3 +61,36 @@ DB_PORT = 3306
   "dialect": "mysql",
   "port": 3306
 },*/
+
+
+
+// FUNIONA!!
+/*
+module.exports = {
+
+  "development": {
+    "username": "241116",
+    "password": "alwaysdata2021",
+    "database": "lionelprats_testing_proyecto_integrador_lio_testing",
+    "host": "mysql-lionelprats.alwaysdata.net",
+    "dialect": "mysql",
+    "port": 3306
+    
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "241116",
+    "password": "alwaysdata2021",
+    "database": "lionelprats_proyecto_integrador_lio",
+    "host": "mysql-lionelprats.alwaysdata.net",
+    "dialect": "mysql",
+    "port": 3306
+  }
+}
+*/
