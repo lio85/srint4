@@ -9,7 +9,7 @@ DB_PORT = 3306
 */
 
 module.exports = {
-
+  /*
   "development": {
     "username": "241116",
     "password": "alwaysdata2021",
@@ -17,7 +17,17 @@ module.exports = {
     "host": "mysql-lionelprats.alwaysdata.net",
     "dialect": "mysql",
     "port": 3306
-    
+  
+  },
+  */
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    //"port": 3306
+  
   },
   "test": {
     "username": "root",
@@ -31,8 +41,8 @@ module.exports = {
     "password": "alwaysdata2021",
     "database": "lionelprats_proyecto_integrador_lio",
     "host": "mysql-lionelprats.alwaysdata.net",
-    "dialect": "mysql",
-    "port": 3306
+    "dialect": "mysql"//,
+    //"port": 3306
   }
 }
 
