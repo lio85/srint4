@@ -16,9 +16,9 @@ const session = require('express-session');
 //     console.log('Servidor 3000 corriendo');
 // })
 app.use(session({
-	secret: "It's a secret"//,
-	//resave: false,
-	//saveUninitialized: false,
+	secret: "It's a secret",
+	resave: false,
+	saveUninitialized: false,
 }));
 
 app.listen(process.env.PORT || 3000, function(){
