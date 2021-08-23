@@ -9,7 +9,7 @@ DB_PORT = 3306
 */
 
 module.exports = {
-  
+  /*
   "development": {
     "username": "241116",
     "password": "alwaysdata2021",
@@ -18,8 +18,8 @@ module.exports = {
     "dialect": "mysql",
     //"port": 3306
   },
+  */
   
-  /*
   "development": {
     "username": "root",
     "password": null,
@@ -29,7 +29,7 @@ module.exports = {
     //"port": 3306
   
   },
-  */
+  
   "test": {
     "username": "241116",
     "password": "alwaysdata2021",
