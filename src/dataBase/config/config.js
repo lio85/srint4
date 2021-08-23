@@ -31,10 +31,10 @@ module.exports = {
   },
   
   "test": {
-    "username": "241116",
-    "password": "alwaysdata2021",
-    "database": "lionelprats_proyecto_integrador_lio",
-    "host": "mysql-lionelprats.alwaysdata.net",
+    "username": "root",
+    "password": null,
+    "database": "database_development",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     //"port": 3306
   },
