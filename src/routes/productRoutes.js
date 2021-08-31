@@ -4,13 +4,13 @@ const router = express.Router();
 const productController = require('./../controllers/productController');
 const fileUpload = require('../middlewares/productMulter');
 const adminUser = require('../middlewares/admin');
+const validationProducts = require('../middlewares/validationProducts');
 
 router.get('/' , productController.list);
-
-router.post('/create', fileUpload.single("productImage"), productController.processForm);
-    
 router.get('/create' , adminUser , productController.create);
-
+//router.post('/create', fileUpload.single("productImage"), productController.processForm);
+router.post('/create', validationProducts, productController.processForm);
+    
 router.get('/detail/:id' , productController.detail);
 
 router.get('/edit/:id' , adminUser , productController.edit);

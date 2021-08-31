@@ -105,12 +105,11 @@ let userController = {
     //    res.send('Datos incorrectos')
 //}}
 
-
-
-
     storeRegister: function(req,res){
+        console.log(req.files);
         let errors = validationResult(req);
         if(!errors.isEmpty()){
+            //return res.send(errors.array()) 
             return res.render('users/register' , {mensajeError : errors.array() , old:req.body})
         };
         db.user.findOne( {
@@ -123,11 +122,27 @@ let userController = {
                 return res.render('users/register' , {mensajeError: [{msg:"Ya existe un usuario registrado con este email."}]})
             } else {
                 let userImage;
+                if(req.files){
+                    const objImages= req.files.userImage;
+                    userImage= Date.now() + path.extname(objImages.name);
+                    objImages.mv(__dirname+'../../../public/imagenes/userImages/'+userImage,(err)=>{
+                        if (err) {
+                            // aqui deberia redirigir a la pagina de error
+                            return res.send("Hubo un error");
+                        }
+                    });
+                } 
+                else {
+                    userImage='';
+                }
+                /*
+                let userImage;
                 if(req.file){
                     userImage=req.file.filename;
                 } else{
                     userImage='';
                 }
+                */
                 db.user.create(
                     {
                         email: req.body.email,

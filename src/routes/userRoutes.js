@@ -7,10 +7,10 @@ const validationUser = require('../middlewares/validationUsers');
 const guestUser = require('../middlewares/guestUser');
 const loggedUser = require('../middlewares/loggedUser');
 
-
 router.get('/register', loggedUser, userController.register);
 
-router.post('/register', fileUpload.single('userImage'), validationUser, userController.storeRegister);
+//router.post('/register', fileUpload.single('userImage'), validationUser, userController.storeRegister);
+router.post('/register', /*fileUpload.single('userImage'),*/ validationUser, userController.storeRegister);
 
 router.get('/profile', guestUser, userController.profile);
 
