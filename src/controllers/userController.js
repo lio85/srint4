@@ -110,12 +110,6 @@ let userController = {
             })       
     },
     update: function(req,res){
-        /*let typeOfuser;
-        if(req.session.userLogged){
-            typeOfuser='user';
-        } else {
-            typeOfuser='administrator';
-        }*/
         let errors = validationResult(req);
         if(!errors.isEmpty()){
             db.user.findByPk(req.params.id)
@@ -124,7 +118,55 @@ let userController = {
             })     
         }
         else {
-            return res.send(req.body)
+            if(req.files){
+                db.user.findByPk(req.params.id)
+                .then(function(user){
+                    if(user.user_image!=""){
+                        let oldImageRoute= path.join(__dirname+'../../../public/imagenes/userImages/'+user.user_image);
+                        fs.unlinkSync(oldImageRoute);
+                    }
+                })
+                const objImages= req.files.userImage;
+                let user_image= Date.now() + path.extname(objImages.name);
+                objImages.mv(__dirname+'../../../public/imagenes/userImages/'+user_image,(err)=>{
+                    if (err) {
+                        // aqui deberia redirigir a la pagina de error
+                        return res.send("Hubo un error");
+                    }
+                });
+                db.user.update({
+                    user_name: req.body.user,
+                    lastName_user: req.body.lastNameUser,
+                    user_image: user_image             
+                },{
+                    where: {id:req.params.id}
+                })
+                req.session.destroy()
+                return res.redirect('/users/login'); 
+            }
+            else if (req.body.deleteImage) {
+                db.user.update({ 
+                    user_name: req.body.user,
+                    lastName_user: req.body.lastNameUser,
+                    user_image: "",
+                    },
+                    {
+                        where: {id:req.params.id}
+                    })
+                req.session.destroy()
+                return res.redirect('/users/login');
+            }
+            else  {
+                db.user.update({ 
+                    user_name: req.body.user,
+                    lastName_user: req.body.lastNameUser,
+                },
+                {
+                    where: {id:req.params.id}
+                })           
+                req.session.destroy()
+                return res.redirect('/users/login');
+            }       
         }    
     }    
 }
