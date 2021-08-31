@@ -148,16 +148,23 @@ let userController = {
                 });                        
             }
             else if (req.body.deleteImage) {
-                db.user.update({ 
-                    user_name: req.body.user,
-                    lastName_user: req.body.lastNameUser,
-                    user_image: "",
-                    },
-                    {
-                        where: {id:req.params.id}
-                    })
-                req.session.destroy()
-                return res.redirect('/users/login');
+                db.user.findByPk(req.params.id)
+                    .then(function(user){
+                        console.log("Esta foto se va a eliminar: "+ user.user_image);
+                        let oldImageRoute= path.join(__dirname+'../../../public/imagenes/userImages/'+user.user_image);
+                        console.log("Esta es su ubicacion: "+ oldImageRoute);
+                        fs.unlinkSync(oldImageRoute); 
+                        db.user.update({ 
+                            user_name: req.body.user,
+                            lastName_user: req.body.lastNameUser,
+                            user_image: "",
+                            },
+                            {
+                                where: {id:req.params.id}
+                            })
+                        req.session.destroy()
+                        return res.redirect('/users/login');
+                    })       
             }
             else  {
                 db.user.update({ 
