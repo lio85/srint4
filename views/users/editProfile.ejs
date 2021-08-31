@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign in - MaMeLi</title>
+        <link rel="stylesheet" href="/css/signup.css">
+        <link rel="stylesheet" href="/css/productForm.css">
+    </head>
+    <body>
+        <%- include('../partials/header') %>
+        
+        <% if(locals.mensajeError){%>
+            <%for(let i=0; i<mensajeError.length; i++){%>
+                <div class="cajaMensajeError">
+                    <div class="mensajeError">
+                        <p><%= mensajeError[i].msg %></p>
+                    </div>
+                </div>
+            <%}%> 
+        <%}%>
+        <main id="main">
+            <div id="contenedor-general">
+                <div id="div-icono">
+                    <i id="icono" class="fas fa-user"></i>
+                </div>
+                
+                <label id="bienvenida" class="labels-formulario">Editar datos</label>
+                <form action="/users/profile/edit/<%=user.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                         
+                    <div class="div">
+                        <label id="label-usuario" class="labels-formulario">Nombre</label>
+                        <% if (locals.mensajeError&&mensajeError.user) { %>
+                            <input type="text" name="user" id="input-usuario" value=<%=old.user%>>
+                            <small style="color:red;"><%=mensajeError.name.msg%></small>
+                        <% } else if (locals.old) { %>
+                            <input type="text" name="user" id="input-usuario" value=<%=old.user%>>
+                        <% } else { %>>
+                            <input type="text" name="user" id="input-usuario" value=<%=user.user_name%>>
+                        <% } %>
+                    </div>
+                    <div class="div">
+                        <label id="label-usuario" class="labels-formulario">Apellido</label>
+                        <% if (locals.mensajeError&&mensajeError.user) { %>
+                            <input type="text" name="lastNameUser" id="input-usuario" value=<%=old.lastNameUser%>>
+                            <small style="color:red;"><%=mensajeError.name.msg%></small>
+                        <% } else if (locals.old) { %>
+                            <input type="text" name="lastNameUser" id="input-usuario" value=<%=old.lastNameUser%>>
+                        <% } else { %>>
+                            <input type="text" name="lastNameUser" id="input-usuario" value=<%=user.lastName_user%>>
+                        <% } %>
+                    </div>
+
+                    <div class="new-product-button-add-image-div-container"> 
+                        <label class="new-product-button-add-image-name">Cambiar imagen de perfil</label>
+                        <input type="file" name="userImage" accept=".gif,.png,.jpeg,.bmp,.webp,.jpg" class="new-product-button-add-image-input"> 
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <%if(user.user_image!=''){%> 
+                            <label for="">Borrar imagen actual</label>
+                            <input type="checkbox" name="deleteImage">
+                        <%}%> 
+                    </div>
+                    
+                    <button id="ingresar" type="submit">Enviar datos</button>
+                    <button id="ingresar"><a style="color: black; text-decoration: none;" href="/users/profile">Volver</a></button>
+                </form> 
+               
+            </div>
+            
+        </main>
+        <%- include('../partials/footer') %>
+        <script src="https://kit.fontawesome.com/17464b966e.js" crossorigin="anonymous"></script>
+    </body>
+</html>
