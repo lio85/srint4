@@ -14,11 +14,64 @@ else {
     productListOl = JSON.parse(datos);
 };
 let productController = {
+    list: function(req,res){
+        db.product.findAll({
+            where: {
+                showing: { [Op.gt]: 0 }
+            }
+        })
+        .then(function(productsStockOn){
+            return res.render("products/productList", {productsStockOn});
+        })
+    },
     create: function(req,res){
         db.category.findAll()
             .then(function(category){
                 res.render('products/createProduct', {category})
             })
+    },
+    processForm: function(req,res){
+        let errors = validationResult(req);
+        if(!errors.isEmpty()){
+            console.log(req.body);
+            db.category.findAll()
+            .then(function(category){ 
+                return res.render('products/createProduct', {category, mensajeError: errors.mapped(), old:req.body})
+            })
+        }
+        else {       
+            let imageProduct;
+            if(req.files!=null){
+                const objImages= req.files.productImage;
+                imageProduct= Date.now() + path.extname(objImages.name);
+                objImages.mv(__dirname+'../../../public/imagenes/productImages/'+imageProduct,(err)=>{
+                    if (err) {
+                        // aqui deberia redirigir a la pagina de error
+                        return res.send("Hubo un error");
+                    }
+                });              
+            }
+            else {
+                imageProduct='';
+            }
+            let showing;
+            if(req.body.showing=='on'){
+                showing= 1;
+            } else{
+                showing= 0;
+            }
+            db.product.create(
+                {
+                name: req.body.name,
+                id_category: req.body.category,
+                description: req.body.description,
+                stock: req.body.stock,
+                price: req.body.price,
+                image_product: imageProduct,
+                showing: showing
+            });
+            res.redirect("/product")
+        }
     },
     detail: function(req,res){
         db.product.findAll()
@@ -74,105 +127,70 @@ let productController = {
         .then(function([product, category]){
             res.render('products/editProduct', {product, category})
         })
-    },
-    list: function(req,res){
-        db.product.findAll({
-            where: {
-                showing: { [Op.gt]: 0 }
-            }
-        })
-        .then(function(productsStockOn){
-            return res.render("products/productList", {productsStockOn});
-        })
-    },
-    processForm: function(req,res){
+    },   
+    update:(req,res)=>{
         let errors = validationResult(req);
-        if(!errors.isEmpty()){
-            db.category.findAll()
-            .then(function(category){ 
-                return res.render('products/createProduct', {category, mensajeError: errors.mapped(), old:req.body})
-            })
+        if(!errors.isEmpty()){ 
+            console.log(req.body);
+            let product = db.product.findByPk(req.params.id);
+            let category = db.category.findAll(); 
+            Promise.all([product, category])
+                .then(function([product, category]){
+                    return res.render('products/editProduct', {product, category, mensajeError: errors.mapped(), old: req.body})
+                })
         }
-        else {       
+        else {  
             let imageProduct;
-            if(req.files!=null){
-                const objImages= req.files.productImage;
-                imageProduct= Date.now() + path.extname(objImages.name);
-                objImages.mv(__dirname+'../../../public/imagenes/productImages/'+imageProduct,(err)=>{
-                    if (err) {
-                        // aqui deberia redirigir a la pagina de error
-                        return res.send("Hubo un error");
-                    }
-                });              
-            }
-            else {
-                imageProduct='';
-            }
-            let showing;
-            if(req.body.showing=='on'){
-                showing= 1;
-            } else{
-                showing= 0;
-            }
-            db.product.create(
-                {
+                if(req.files!=null){
+                    const objImages= req.files.productImage;
+                    imageProduct= Date.now() + path.extname(objImages.name);
+                    objImages.mv(__dirname+'../../../public/imagenes/productImages/'+imageProduct,(err)=>{
+                        if (err) {
+                            // aqui deberia redirigir a la pagina de error
+                            return res.send("Hubo un error");
+                        }
+                    });              
+                }        
+            if(imageProduct){
+                db.product.update({
                 name: req.body.name,
                 id_category: req.body.category,
                 description: req.body.description,
                 stock: req.body.stock,
                 price: req.body.price,
                 image_product: imageProduct,
-                showing: showing
-            });
-            res.redirect("/product")
-        }
-    },
-    update:(req,res)=>{
-        let imageProduct;
-        if(req.file){
-            imageProduct=req.file.filename;
-        };
-        if(imageProduct){
-            db.product.update({
-            name: req.body.name,
-            id_category: req.body.category,
-            description: req.body.description,
-            stock: req.body.stock,
-            price: req.body.price,
-            image_product: imageProduct,
-            }, {
-                where: {id:req.params.id}
-            })            
-        }        
-        else if (req.body.deleteImage) {
-            db.product.update({ 
+                }, {
+                    where: {id:req.params.id}
+                })            
+            }        
+            else if (req.body.deleteImage) {
+                db.product.update({ 
+                    name: req.body.name,
+                    id_category: req.body.category,
+                    description: req.body.description,
+                    stock: req.body.stock,
+                    price: req.body.price,
+                    image_product: "",
+                    },
+                    {
+                        where: {id:req.params.id}
+                    })
+            }
+            else  {
+                db.product.update({ 
                 name: req.body.name,
                 id_category: req.body.category,
                 description: req.body.description,
                 stock: req.body.stock,
                 price: req.body.price,
-                image_product: "",
                 },
                 {
                     where: {id:req.params.id}
-                })
+                })          
+            }
+            res.redirect('/product')
         }
-        else  {
-            db.product.update({ 
-            name: req.body.name,
-            id_category: req.body.category,
-            description: req.body.description,
-            stock: req.body.stock,
-            price: req.body.price,
-            },
-            {
-                where: {id:req.params.id}
-            })
-            
-        }
-        res.redirect('/product')
-
-        },
+    },
     destroy: function(req,res){
         db.product.update({
             showing: 0
