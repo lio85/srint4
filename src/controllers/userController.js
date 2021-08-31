@@ -127,7 +127,6 @@ let userController = {
             return res.send(req.body)
         }    
     }    
-    
 }
 
 module.exports = userController;
