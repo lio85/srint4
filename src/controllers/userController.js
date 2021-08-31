@@ -128,24 +128,24 @@ let userController = {
                         fs.unlinkSync(oldImageRoute); 
                     }
                     const objImages= req.files.userImage;
-                let new_image= Date.now() + path.extname(objImages.name);
-                objImages.mv(__dirname+'../../../public/imagenes/userImages/'+new_image,(err)=>{
+                    let new_image= Date.now() + path.extname(objImages.name);
+                    objImages.mv(__dirname+'../../../public/imagenes/userImages/'+new_image,(err)=>{
                     console.log("Se creó la "+ new_image);
                     if (err) {
                         // aqui deberia redirigir a la pagina de error
                         return res.send("Hubo un error");
                     }
-                });
-                db.user.update({
-                    user_name: req.body.user,
-                    lastName_user: req.body.lastNameUser,
-                    user_image: new_image             
-                },{
-                    where: {id:req.params.id}
-                })
-                req.session.destroy()
-                return res.redirect('/users/login'); 
-                })               
+                    db.user.update({
+                        user_name: req.body.user,
+                        lastName_user: req.body.lastNameUser,
+                        user_image: new_image             
+                    },{
+                        where: {id:req.params.id}
+                    })
+                    req.session.destroy()
+                    return res.redirect('/users/login'); 
+                    })     
+                });                        
             }
             else if (req.body.deleteImage) {
                 db.user.update({ 
