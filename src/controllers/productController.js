@@ -132,16 +132,20 @@ let productController = {
         let product = db.product.findByPk(req.params.id);
         let category = db.category.findAll(); 
         Promise.all([product, category])
-            .then(function([product, category]){    
+            .then(function([product, category]){ 
+                let productImages_path= path.join(__dirname+'../../../public/imagenes/productImages/');
                 let errors = validationResult(req);
                 if(!errors.isEmpty()){ 
                     return res.render('products/editProduct', {product, category, mensajeError: errors.mapped(), old: req.body})                
                 }
-                else if(req.files){  
-                    let imageProduct;
-                    const objImages= req.files.productImage;
-                    imageProduct= Date.now() + path.extname(objImages.name);
-                    objImages.mv(__dirname+'../../../public/imagenes/productImages/'+imageProduct,(err)=>{
+                else if(req.files){ 
+                    if(product.image_product!=""){
+                        let imageToDelete_path= productImages_path + product.image_product;
+                        fs.unlinkSync(imageToDelete_path);  
+                    }
+                    const objNewImage= req.files.productImage;
+                    let imageProduct_name= Date.now() + path.extname(objNewImage.name);
+                    objNewImage.mv(productImages_path+imageProduct_name,(err)=>{
                         if (err) {
                             // aqui deberia redirigir a la pagina de error
                             return res.send("Hubo un error");
@@ -153,12 +157,16 @@ let productController = {
                         description: req.body.description,
                         stock: req.body.stock,
                         price: req.body.price,
-                        image_product: imageProduct,
+                        image_product: imageProduct_name,
                         }, {
                             where: {id:req.params.id}
                         })               
                 }      
                 else if (req.body.deleteImage) {
+                    if(product.image_product!=""){
+                        let imageToDelete_path= productImages_path + product.image_product;
+                        fs.unlinkSync(imageToDelete_path);  
+                    }
                     db.product.update({ 
                         name: req.body.name,
                         id_category: req.body.category,
