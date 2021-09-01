@@ -33,7 +33,7 @@
                         <label id="label-usuario" class="labels-formulario">Nombre</label>
                         <% if (locals.mensajeError&&mensajeError.user) { %>
                             <input type="text" name="user" id="input-usuario" value=<%=old.user%>>
-                            <small style="color:red;"><%=mensajeError.name.msg%></small>
+                            <small style="color:red;"><%=mensajeError.user.msg%></small>
                         <% } else if (locals.old) { %>
                             <input type="text" name="user" id="input-usuario" value=<%=old.user%>>
                         <% } else { %>>
@@ -42,9 +42,9 @@
                     </div>
                     <div class="div">
                         <label id="label-usuario" class="labels-formulario">Apellido</label>
-                        <% if (locals.mensajeError&&mensajeError.user) { %>
+                        <% if (locals.mensajeError&&mensajeError.lastNameUser) { %>
                             <input type="text" name="lastNameUser" id="input-usuario" value=<%=old.lastNameUser%>>
-                            <small style="color:red;"><%=mensajeError.name.msg%></small>
+                            <small style="color:red;"><%=mensajeError.lastNameUser.msg%></small>
                         <% } else if (locals.old) { %>
                             <input type="text" name="lastNameUser" id="input-usuario" value=<%=old.lastNameUser%>>
                         <% } else { %>>
@@ -55,6 +55,9 @@
                     <div class="new-product-button-add-image-div-container"> 
                         <label class="new-product-button-add-image-name">Cambiar imagen de perfil</label>
                         <input type="file" name="userImage" accept=".gif,.png,.jpeg,.bmp,.webp,.jpg" class="new-product-button-add-image-input"> 
+                        <% if (locals.mensajeError&&mensajeError.userImage) { %>
+                            <small style="color:red;"><%=mensajeError.userImage.msg%></small>
+                        <% } %>
                     </div>
                     
                     <div style="text-align: center; margin-top: 20px;">

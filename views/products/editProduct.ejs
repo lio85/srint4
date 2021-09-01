@@ -102,6 +102,11 @@
                     <label class="new-product-button-add-image-name">Agregar imágenes</label>
                     <input type="file" name="productImage" accept=".gif,.png,.jpeg,.bmp,.webp,.jpg" class="new-product-button-add-image-input">
                 </div>
+                <div style="text-align: center;">
+                    <% if (locals.mensajeError&&mensajeError.productImage) { %>
+                        <small style="color:red;"><%=mensajeError.productImage.msg%></small>
+                    <% } %>
+                </div>
                 
                 <div class="productFormFourthLine">
                     <button class="prodFormButton" type="submit">Confirmar</button>

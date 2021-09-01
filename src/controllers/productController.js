@@ -131,6 +131,7 @@ let productController = {
     update:(req,res)=>{
         let errors = validationResult(req);
         if(!errors.isEmpty()){ 
+            //return res.send(errors.mapped())
             let product = db.product.findByPk(req.params.id);
             let category = db.category.findAll(); 
             Promise.all([product, category])
