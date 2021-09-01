@@ -35,27 +35,27 @@ let userController = {
         res.render('users/login'); 
     },
     loginProcess: function(req,res){   
-    let errorMessage= 'Las credenciales son inválidas';
+        let errorMessage= 'Las credenciales son inválidas';
 
-    db.user.findOne( {
-        where: {
-            email: req.body.email
-        }
-    })
-    .then(function(userToLog){
-        let passwordOk= bcryptjs.compareSync(req.body.password , userToLog.password)
-               if(passwordOk){ 
-                    req.session.userLogged= userToLog;   
-               } else { 
-                    res.render('users/login',{errorMessage})
-               }})
-    .then(function(){
-        res.redirect('/users/profile')
-    })         
-    .catch(function(e){
-        return res.render('users/login',{errorMessage})
-    })
-    },
+        db.user.findOne( {
+            where: {
+                email: req.body.email
+            }
+        })
+        .then(function(userToLog){
+            let passwordOk= bcryptjs.compareSync(req.body.password , userToLog.password)
+                if(passwordOk){ 
+                        req.session.userLogged= userToLog;   
+                } else { 
+                        res.render('users/login',{errorMessage})
+                }})
+        .then(function(){
+            res.redirect('/users/profile')
+        })         
+        .catch(function(e){
+            return res.render('users/login',{errorMessage})
+        })
+        },
     storeRegister: function(req,res){
         //console.log(req.files);
         let errors = validationResult(req);
@@ -97,12 +97,6 @@ let userController = {
             }      
         })
     },
-    logout: function(req , res){
-        //res.clearCookie('userEmail');
-        req.session.destroy()
-        res.redirect('/')
-    },
-
     editProfile: function(req,res){
         db.user.findByPk(req.params.id)
             .then(function(user){
@@ -162,7 +156,12 @@ let userController = {
                 req.session.destroy()
                 return res.redirect('/users/login');    
             })       
-    }   
+    },  
+    logout: function(req , res){
+        //res.clearCookie('userEmail');
+        req.session.destroy()
+        res.redirect('/')
+    } 
 }
 
 module.exports = userController;
