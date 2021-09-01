@@ -131,7 +131,7 @@ let productController = {
     update:(req,res)=>{
         let errors = validationResult(req);
         if(!errors.isEmpty()){ 
-            console.log(req.body);
+            //console.log(req.body);
             let product = db.product.findByPk(req.params.id);
             let category = db.category.findAll(); 
             Promise.all([product, category])
@@ -141,16 +141,16 @@ let productController = {
         }
         else {  
             let imageProduct;
-                if(req.files!=null){
-                    const objImages= req.files.productImage;
-                    imageProduct= Date.now() + path.extname(objImages.name);
-                    objImages.mv(__dirname+'../../../public/imagenes/productImages/'+imageProduct,(err)=>{
-                        if (err) {
-                            // aqui deberia redirigir a la pagina de error
-                            return res.send("Hubo un error");
-                        }
-                    });              
-                }        
+            if(req.files){
+                const objImages= req.files.productImage;
+                imageProduct= Date.now() + path.extname(objImages.name);
+                objImages.mv(__dirname+'../../../public/imagenes/productImages/'+imageProduct,(err)=>{
+                    if (err) {
+                        // aqui deberia redirigir a la pagina de error
+                        return res.send("Hubo un error");
+                    }
+                });              
+            }        
             if(imageProduct){
                 db.product.update({
                 name: req.body.name,
