@@ -21,7 +21,7 @@ router.get('/profile', guestUser, userController.profile);
 
 router.get('/profile/edit/:id', userController.editProfile);
 
-router.put('/profile/edit/:id', editUserValidations, userController.update);
+router.put('/profile/edit/:id', editUserValidations, userController.updateProfile);
 
 router.get('/logout', guestUser, userController.logout);
 

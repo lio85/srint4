@@ -13,11 +13,11 @@ router.post('/create', validationProducts, productController.processForm);
     
 router.get('/detail/:id' , productController.detail);
 
-router.get('/edit/:id' , adminUser , productController.edit);
+router.get('/edit/:id' , adminUser , productController.editProduct);
 
 // accion de editar un producto
 //router.put('/:id', fileUpload.single("productImage"), productController.update);
-router.put('/:id', validationProducts, productController.update);
+router.put('/:id', validationProducts, productController.updateProduct);
 
 // accion de eliminar un producto
 router.delete('/:id', productController.destroy); 

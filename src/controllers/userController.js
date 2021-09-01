@@ -109,7 +109,7 @@ let userController = {
                 return res.render('users/editProfile',{user});
             })       
     },
-    update: function(req,res){
+    updateProfile: function(req,res){
         let product = db.product.findByPk(req.params.id);
         let category = db.category.findAll(); 
         Promise.all([product, category])
