@@ -60,7 +60,7 @@ let userController = {
         //console.log(req.files);
         let errors = validationResult(req);
         if(!errors.isEmpty()){
-            return res.render('users/register' , {mensajeError : errors.array() , old:req.body})
+            return res.render('users/register' , {mensajeError: errors.array(), old:req.body})
         };
         db.user.findOne({
             where: {
@@ -69,7 +69,7 @@ let userController = {
         })
         .then(function(user){
             if(user){
-                return res.render('users/register' , {mensajeError: [{msg:"Ya existe un usuario registrado con este email."}]})
+                return res.render('users/register' , {mensajeError: [{msg:"Ya existe un usuario registrado con este email." }], old:req.body})
             } else {
                 let userImage;
                 if(req.files){

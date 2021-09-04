@@ -18,7 +18,7 @@
 
         <% if(locals.mensajeError){%>
             <%for(let i=0; i<mensajeError.length; i++){%>
-                <div class="cajaMensajeError">
+                <div id="more_validations" class="cajaMensajeError">
                     <div class="mensajeError"><p><%= mensajeError[i].msg %> </p></div>
                 </div>
             <%}%> 

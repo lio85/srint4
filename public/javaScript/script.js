@@ -2,8 +2,8 @@
 let front_validations_box = document.querySelector("#front_validations_box");
 front_validations_box.style.display= "none";
 
-//let cajaMensajeError = document.querySelector(".cajaMensajeError");
-//cajaMensajeError.style.display= "none";
+
+
 
 let users_register_form= document.querySelector("#users_register_form");
 
@@ -13,6 +13,11 @@ users_register_form.addEventListener("submit", function(e){
 })
 
 function validations(){
+    let more_validations = document.querySelector("#more_validations");
+    if(more_validations!=null){
+        more_validations.style.display= "none";
+    }
+
     let nameUser_error_message= document.querySelector("#nameUser_error_message");
     nameUser_error_message.innerHTML="";
     
