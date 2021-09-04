@@ -9,16 +9,16 @@ const validations = [
         if(req.files!=null){
             const objImages= req.files.userImage;
             if(objImages.mimetype!="image/gif"&&objImages.mimetype!="image/png"&&objImages.mimetype!="image/jpeg"&&objImages.mimetype!="image/bmp"&&objImages.mimetype!="image/webp"){
-               throw new Error ('El archivo debe ser formato imagen'); 
+               throw new Error ('El archivo tiene que ser de formato imagen'); 
             }
             else if (objImages.size>30000){
                 throw new Error ('El tamaño del archivo supera el máximo permitido. Puedes intentar nuevamente. Recuerda que la imagen de perfil no es obligatoria.'); 
             }
+        return true
+        } else {
             return true
-            } else {
-                return true
-            }
-        })
+        }
+    })
 ]
 
 module.exports = validations
