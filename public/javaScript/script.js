@@ -2,9 +2,6 @@
 let front_validations_box = document.querySelector("#front_validations_box");
 front_validations_box.style.display= "none";
 
-
-
-
 let users_register_form= document.querySelector("#users_register_form");
 
 users_register_form.addEventListener("submit", function(e){
@@ -27,10 +24,6 @@ function validations(){
     let password_user_input= document.querySelector("#password_user_input");
     let rePassword_user_input= document.querySelector("#rePassword_user_input");
     let image_user_input= document.querySelector("#image_user_input");
-    // console.log(image_user_input.value);
-    //console.log(image_user_input.files[0]);
-    // console.log(image_user_input.files[0].size);
-    //console.log(image_user_input.files[0].type);
     
     let userForm_errors_array= [];
     if (name_user_input.value==""){
