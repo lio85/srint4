@@ -62,7 +62,7 @@ let userController = {
         if(!errors.isEmpty()){
             return res.render('users/register' , {mensajeError : errors.array() , old:req.body})
         };
-        db.user.findOne( {
+        db.user.findOne({
             where: {
                 email: req.body.email
             }
