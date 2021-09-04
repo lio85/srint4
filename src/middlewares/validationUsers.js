@@ -11,7 +11,7 @@ const validations = [
             if(objImages.mimetype!="image/gif"&&objImages.mimetype!="image/png"&&objImages.mimetype!="image/jpeg"&&objImages.mimetype!="image/bmp"&&objImages.mimetype!="image/webp"){
                throw new Error ('El archivo tiene que ser de formato imagen'); 
             }
-            else if (objImages.size>30000){
+            else if (objImages.size>30720){
                 throw new Error ('El tamaño del archivo supera el máximo permitido. Puedes intentar nuevamente. Recuerda que la imagen de perfil no es obligatoria.'); 
             }
         return true

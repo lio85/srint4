@@ -1,5 +1,9 @@
+//let imageValidator= require("../../src/modules/imagesValidator");
 let front_validations_box = document.querySelector("#front_validations_box");
 front_validations_box.style.display= "none";
+
+//let cajaMensajeError = document.querySelector(".cajaMensajeError");
+//cajaMensajeError.style.display= "none";
 
 let users_register_form= document.querySelector("#users_register_form");
 
@@ -18,7 +22,10 @@ function validations(){
     let password_user_input= document.querySelector("#password_user_input");
     let rePassword_user_input= document.querySelector("#rePassword_user_input");
     let image_user_input= document.querySelector("#image_user_input");
-    console.log(image_user_input.value);
+    // console.log(image_user_input.value);
+    //console.log(image_user_input.files[0]);
+    // console.log(image_user_input.files[0].size);
+    //console.log(image_user_input.files[0].type);
     
     let userForm_errors_array= [];
     if (name_user_input.value==""){
@@ -37,9 +44,14 @@ function validations(){
     }
 
     if(image_user_input.value!=""){
-        let result= allowExtensions(image_user_input.value);
-        if (!result) {
+        /*let isImage= allowExtensions(image_user_input.value);
+        if (!isImage) {
             userForm_errors_array.push ("El archivo tiene que ser de formato imagen"); 
+        }*/
+        if(image_user_input.files[0].type!="image/bmp"&&image_user_input.files[0].type!="image/gif"&&image_user_input.files[0].type!="image/jpeg"&&image_user_input.files[0].type!="image/jpg"&&image_user_input.files[0].type!="image/png"&&image_user_input.files[0].type!="image/webp"){
+            userForm_errors_array.push ('El archivo tiene que ser de formato imagen'); 
+        } else if (image_user_input.files[0].size > 30720){
+            userForm_errors_array.push ("El tamaño del archivo supera el máximo permitido. Puedes intentar nuevamente. Recuerda que la imagen de perfil no es obligatoria."); 
         }
     }
 
@@ -58,7 +70,8 @@ function validations(){
         users_register_form.submit();
     }
 }
-           
+
+/*
 function allowExtensions(file_path){
     let length= file_path.length;
     let bmp_gif_jpg_png= length -4;
@@ -101,7 +114,7 @@ function allowExtensions(file_path){
     //  .  j  p  e   g
     // 15  16 17 18 19
 }
-
+*/
 
 
 
