@@ -25,10 +25,10 @@ let indexController = {
             return res.render("index", {productsStockOn});
 
         })
-        
     },
     cart: function(req,res){
-        res.render('cart');
+        let idUser= req.session.userLogged.id;
+        res.render('cart', {idUser});
     },
     faqs: function(req,res){
         res.render('faqs');

@@ -72,9 +72,9 @@
           
         <div class='productImage'>
           <% if(productD.image_product){   %>
-            <img id='producto' src="/imagenes/productImages/<%=productD.image_product%>" class= "prodDetailImg selected_product"> 
+            <img id='producto' src="/imagenes/productImages/<%=productD.image_product%>" class= "prodDetailImg selected_product_image"> 
           <%}else{%>
-            <img id='producto' src="/imagenes/logo.png" class= "prodDetailImg selected_product">
+            <img id='producto' src="/imagenes/logo.png" class= "prodDetailImg selected_product_image">
           <%}%>
         </div>
         <div class='productImage'>
@@ -86,7 +86,7 @@
         <div id="det">
           <br>
           <div class= "productInfo">
-            <div id='precio'>$<%=productD.price%></div>
+            <div class="selected_product_price" id='precio'>$<%=productD.price%></div>
             <br id='espacioCuota'>
             <div id='cuotas'> 6 cuotas sin interes de $<%=(productD.price)/6%></div>
             <br id='espacioCuota'>
