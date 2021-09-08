@@ -24,8 +24,8 @@ app.use(session({
 	saveUninitialized: false,
 }));
 
-app.listen(process.env.PORT || 3000, function(){
-    console.log('Servidor corriendo en puerto 3000');
+app.listen(process.env.PORT || 3001, function(){
+    console.log('Servidor corriendo en puerto 3001');
 });
 
 /*
