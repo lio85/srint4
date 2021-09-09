@@ -8,7 +8,6 @@ addToCart.addEventListener("click", function(e){
         pathImageProduct: document.querySelector(".selected_product_image").attributes[1].value, // almaceno la ruta de la imagen dentro del proyecto
         priceProduct: document.querySelector(".selected_product_price").innerHTML.substr(1) // almaceno el precio del producto
     }
-
     sessionStorage.setItem("productInformation",JSON.stringify(objectProduct))
 })
 
