@@ -26,7 +26,6 @@ let indexController = {
                 user= req.session.userLogged.id;
             }
             return res.render("index", {productsStockOn, user});
-
         })
     },
     cart: function(req,res){
