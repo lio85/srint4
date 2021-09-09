@@ -6,24 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Carrito</title>
     
-        <link rel="stylesheet" href="./css/shop.css">
+        <link rel="stylesheet" href="/css/shop.css">
     </head>
     <body>
 
         <%- include('./partials/header') %>
 
         <main id="main-carrito">
-
-            <% if(idUser){ %>
-                <div id="userLogged_id"><%=idUser%></div>
-            <% } %>            
-            <div id="productos-seleccionados">
-
-            <!-- 1er. producto -->
+           
                 <div class="producto-seleccionado">
                     <label class="nombre-producto-seleccionado"><strong>Seleccionaste:</strong> Maceta Terracota Bemba</label>
                     <span class="contenedor-imagen-producto-seleccionado">
-                        <img class="imagen-producto-seleccionado" src="./imagenes/maceta-terracota-bemba.jpg" alt="maceta-terracota-bemba">
+                        <img class="imagen-producto-seleccionado" src="/imagenes/maceta-terracota-bemba.jpg" alt="maceta-terracota-bemba">
                     </span>
                     <div class="detalle-compra-padre"> 
                         <div class="detalle-compra-hijo">
@@ -48,12 +42,12 @@
 
                 <div class="main-separador"></div>
 
-                <!-- 2do. producto -->
+                
 
                 <div class="producto-seleccionado">
                     <label class="nombre-producto-seleccionado"><strong>Seleccionaste:</strong> Stand de madera G alto con maceta de terracota</label>
                     <span class="contenedor-imagen-producto-seleccionado">
-                        <img class="imagen-producto-seleccionado" src="./imagenes/stand-madera-G-alto-con-maceta-de-terracota.jpg" alt="maceta-terracota-bemba">               
+                        <img class="imagen-producto-seleccionado" src="/imagenes/stand-madera-G-alto-con-maceta-de-terracota.jpg" alt="maceta-terracota-bemba">               
                     </span>
                     <div class="detalle-compra-padre"> 
                         <div class="detalle-compra-hijo">
@@ -78,12 +72,12 @@
                 <div class="main-separador"></div>
                 <div class="main-separador2"></div>
 
-                <!-- 3er. producto -->
+                
 
                 <div class="producto-seleccionado">
                     <label class="nombre-producto-seleccionado"><strong>Seleccionaste:</strong> Maceta Adoquín</label>
                     <span class="contenedor-imagen-producto-seleccionado">
-                        <img class="imagen-producto-seleccionado" src="./imagenes/maceta-adoquin.jpg" alt="Maceta adoquin">
+                        <img class="imagen-producto-seleccionado" src="/imagenes/maceta-adoquin.jpg" alt="Maceta adoquin">
                     </span>
                     <div class="detalle-compra-padre"> 
                         <div class="detalle-compra-hijo">
@@ -129,9 +123,9 @@
         <%- include('./partials/footer') %>
 
         <script src="https://kit.fontawesome.com/17464b966e.js" crossorigin="anonymous"></script>
-
+        <script src="/javaScript/cart.js"></script>  
     </body>
-</html>
+</html> 
 
 
 
@@ -139,8 +133,8 @@
 
 
 
-<!-- 
-<!DOCTYPE html>
+ 
+<!-- <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -156,14 +150,10 @@
 
         <main id="main-carrito">
 
-            <div id="productos-seleccionados"> -->
+            <div id="productos-seleccionados">
 
 
 
-            <!-- 1er. producto -->
-
-
-<!-- 
                 <div class="producto-seleccionado">
                     <label class="nombre-producto-seleccionado"><strong>Seleccionaste:</strong> Maceta Terracota Bemba</label>
                     <span class="contenedor-imagen-producto-seleccionado">
@@ -190,14 +180,11 @@
                     </div>
                 </div>
 
-                <div class="main-separador"></div> -->
+                <div class="main-separador"></div> 
 
 
 
-                <!-- 2do. producto -->
-
-
-<!-- 
+ 
                 <div class="producto-seleccionado">
                     <label class="nombre-producto-seleccionado"><strong>Seleccionaste:</strong> Stand de madera G alto con maceta de terracota</label>
                     <span class="contenedor-imagen-producto-seleccionado">
@@ -224,13 +211,7 @@
                 </div>
 
                 <div class="main-separador"></div>
-                <div class="main-separador2"></div> -->
-
-
-
-                <!-- 3er. producto -->
-
-<!-- 
+                <div class="main-separador2"></div> 
 
                 <div class="producto-seleccionado">
                     <label class="nombre-producto-seleccionado"><strong>Seleccionaste:</strong> Maceta Adoquín</label>
@@ -283,4 +264,4 @@
         <script src="https://kit.fontawesome.com/17464b966e.js" crossorigin="anonymous"></script>
 
     </body>
-</html> -->
+</html>  -->

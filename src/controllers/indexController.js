@@ -21,14 +21,16 @@ let indexController = {
             }
         })
         .then(function(productsStockOn){
-            
-            return res.render("index", {productsStockOn});
+            let user;
+            if(req.session.userLogged){
+                user= req.session.userLogged.id;
+            }
+            return res.render("index", {productsStockOn, user});
 
         })
     },
     cart: function(req,res){
-        let idUser= req.session.userLogged.id;
-        res.render('cart', {idUser});
+        res.render('cart');
     },
     faqs: function(req,res){
         res.render('faqs');

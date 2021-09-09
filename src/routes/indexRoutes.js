@@ -6,7 +6,7 @@ const guestUser = require('../middlewares/guestUser');
 
 router.get('/' , indexController.index);
 
-router.get('/cart', guestUser, indexController.cart);
+router.get('/cart/:id', guestUser, indexController.cart);
 
 router.get('/faqs' , indexController.faqs);
 
