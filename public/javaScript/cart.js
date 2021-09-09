@@ -1,43 +1,91 @@
-//const { strictLeft } = require("sequelize/types/lib/operators");
-
-let idUser=  window.location.pathname.slice(6); // almaceno el id del producto desde la URL
-//console.log("El id del usuario es el :"+idUser);
-
-
-
-let productSelected= JSON.parse(sessionStorage.getItem("productInformation"));
-//console.log(productSelected);
-sessionStorage.removeItem("productInformation")
-//console.log(sessionStorage);
-
-let arrayProducts=[];
-
-
+let idUser=  window.location.pathname.slice(6); // almaceno el id del usuario desde la URL
 let userFounded= "user"+idUser;
-console.log(userFounded);
 
-if (localStorage.getItem(userFounded)==null){
-    alert("Es tu primer producto")
-    arrayProducts.push(productSelected)
-    localStorage.setItem(userFounded,JSON.stringify(arrayProducts));   
-    console.log(localStorage.getItem(userFounded)); 
+if (sessionStorage.getItem("productInformation")!=null){
+
+    let productSelected= JSON.parse(sessionStorage.getItem("productInformation"));
+    sessionStorage.removeItem("productInformation")
+
+    let arrayProducts=[];
+
+    if (localStorage.getItem(userFounded)==null){
+        arrayProducts.push(productSelected)
+        localStorage.setItem(userFounded,JSON.stringify(arrayProducts));  
+    }
+    else {
+        arrayProducts=JSON.parse(localStorage.getItem(userFounded))
+        
+
+        localStorage.removeItem(userFounded)
+
+        arrayProducts.push(productSelected)
+        //console.log(arrayProducts);
+
+        localStorage.setItem(userFounded,JSON.stringify(arrayProducts));  
+        //console.log(localStorage.getItem(userFounded));
+    }
+
 }
 else {
-    alert("Vas a agregar mas productos")
-    console.log(localStorage);
-
-    arrayProducts=JSON.parse(localStorage.getItem(userFounded))
-    
-
-    localStorage.removeItem(userFounded)
-    console.log(localStorage);
-
-    arrayProducts.push(productSelected)
-    //console.log(arrayProducts);
-
-    localStorage.setItem(userFounded,JSON.stringify(arrayProducts));  
-    console.log(localStorage.getItem(userFounded));
+    alert("No agregaste nada")
 }
+
+//-----------------------------------------------
+
+let localStorageProducts= JSON.parse(localStorage.getItem(userFounded));
+
+let generalContainer= document.querySelector(".generalContainer");
+
+if(localStorageProducts!=null){
+    
+    for (let i=0;i<localStorageProducts.length;i++){
+        generalContainer.innerHTML+="<ul class='productContainer' style='border: solid black 1px'>"
+            +"<li>"+localStorageProducts[i].nameProduct+"</li>"
+            +"<li><img src='" +localStorageProducts[i].pathImageProduct+"' alt='"+localStorageProducts[i].nameProduct+"'></li>"
+            +"<li>$"+localStorageProducts[i].priceProduct+"</li>" 
+            +"</ul>"
+    }
+}
+
+else {
+    generalContainer.innerHTML="<li>Nada que mostrar</li>"
+}
+let productContainer= document.querySelectorAll("ul.productContainer");
+console.log(productContainer);
+for (oneProduct of productContainer){
+    oneProduct.style.backgroundColor="yellow";
+}
+/*
+for (let i=0; i<productContainer.length;i++){
+    productContainer[i].style.backgroundColor="red";
+}
+*/
+
+
+{/* <strong>Seleccionaste:</strong> Stand de madera G alto con maceta de terracota */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 let confirmar= document.querySelector("#confirm-button")
