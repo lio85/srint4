@@ -6,7 +6,7 @@
 
 .proyecto_integrador_lio.sql
 
-/public/imagenes/productImages
+# /public/imagenes/productImages
 /public/imagenes/userImages
 
 .z_pruebas.js
